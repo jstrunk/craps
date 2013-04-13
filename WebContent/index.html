@@ -16,45 +16,60 @@
 <div class="show" id="point"></div>
 <button id="roll">Roll!</button>
 <button id="reset">Reset Bets</button>
-<div class="bet">pass<input type="text" name="pass" /></div>
-<div class="bet">pass odds<input type="text" name="passodds" /></div>
-<div class="bet">don't pass<input type="text" name="dontpass" /></div>
-<div class="bet">don't pass odds<input type="text" name="dontpassodds" /></div>
-<div class="bet">come<input type="text" name="come" /></div>
-<div class="bet">don't come<input type="text" name="dontcome" /></div>
-<div class="bet">field<input type="text" name="field" /></div>
-<div class="bet">big 6<input type="text" name="big6" /></div>
-<div class="bet">big 8<input type="text" name="big8" /></div>
-<div class="bet">seven<input type="text" name="seven" /></div>
-<div class="bet">hard 4<input type="text" name="hard4" /></div>
-<div class="bet">hard 6<input type="text" name="hard6" /></div>
-<div class="bet">hard 8<input type="text" name="hard8" /></div>
-<div class="bet">hard 10<input type="text" name="hard10" /></div>
-<div class="bet">craps<input type="text" name="craps" /></div>
-<div class="bet">come 4<input type="text" class="come" name="come4" /></div>
-<div class="bet">come 4 odds<input type="text" name="come4odds" /></div>
-<div class="bet">place 4<input type="text" name="place4" /></div>
-<div class="bet">buy 4<input type="text" name="buy4" /></div>
-<div class="bet">come 5<input type="text" class="come" name="come5" /></div>
-<div class="bet">come 5 odds<input type="text" name="come5odds" /></div>
-<div class="bet">place 5<input type="text" name="place5" /></div>
-<div class="bet">buy 5<input type="text" name="buy5" /></div>
-<div class="bet">come 6<input type="text" class="come" name="come6" /></div>
-<div class="bet">come 6 odds<input type="text" name="come6odds" /></div>
-<div class="bet">place 6<input type="text" name="place6" /></div>
-<div class="bet">buy 6<input type="text" name="buy6" /></div>
-<div class="bet">come 8<input type="text" class="come" name="come8" /></div>
-<div class="bet">come 8 odds<input type="text" name="come8odds" /></div>
-<div class="bet">place 8<input type="text" name="place8" /></div>
-<div class="bet">buy 8<input type="text" name="buy8" /></div>
-<div class="bet">come 9<input type="text" class="come" name="come9" /></div>
-<div class="bet">come 9 odds<input type="text" name="come9odds" /></div>
-<div class="bet">place 9<input type="text" name="place9" /></div>
-<div class="bet">buy 9<input type="text" name="buy9" /></div>
-<div class="bet">come 10<input type="text" class="come" name="come10" /></div>
-<div class="bet">come 10 odds<input type="text" name="come10odds" /></div>
-<div class="bet">place 10<input type="text" name="place10" /></div>
-<div class="bet">buy 10<input type="text" name="buy10" /></div>
+<div><img src="Craps_table_layout.svg" width="1600" height="800" border="0" usemap="#map" />
+
+<map name="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:Jeff Strunk -->
+<area shape="poly" coords="127,102,52,153,52,516,60,561,90,608,137,640,199,655,953,652,952,576,196,574,169,569,152,554,135,535,127,507" target="pass"  nohref="nohref" />
+<area shape="poly" coords="201,53,128,102,129,377,202,378" target="dontpass"  nohref="nohref" />
+<area shape="poly" coords="328,501,953,501,953,574,326,573" target="dontpass"  nohref="nohref" />
+<area shape="poly" coords="204,376,127,377,127,508,134,537,148,553,152,554,266,438" target="big6"  nohref="nohref" />
+<area shape="poly" coords="265,440,329,502,327,575,189,573,166,564,150,553" target="big8"  nohref="nohref" />
+<area shape="poly" coords="206,376,953,377,953,500,329,502" target="field"  nohref="nohref" />
+<area shape="rect" coords="203,252,951,376" target="come"  nohref="nohref" />
+<area shape="rect" coords="204,49,327,248" target="dontcome"  nohref="nohref" />
+<area shape="rect" coords="330,50,452,94" target="lay4"  nohref="nohref" />
+<area shape="rect" coords="328,95,452,113" target="place4"  nohref="nohref" />
+<area shape="rect" coords="329,233,452,253" target="place4"  nohref="nohref" />
+<area shape="rect" coords="329,112,452,233" target="four"  nohref="nohref" />
+<area shape="rect" coords="453,51,577,95" target="lay5"  nohref="nohref" />
+<area shape="rect" coords="453,95,578,111" target="place5"  nohref="nohref" />
+<area shape="rect" coords="453,112,578,235" target="five"  nohref="nohref" />
+<area shape="rect" coords="453,235,579,250" target="place5"  nohref="nohref" />
+<area shape="rect" coords="578,50,700,95" target="lay6"  nohref="nohref" />
+<area shape="rect" coords="578,95,703,112" target="place6"  nohref="nohref" />
+<area shape="rect" coords="578,113,703,234" target="six"  nohref="nohref" />
+<area shape="rect" coords="577,235,703,251" target="place6"  nohref="nohref" />
+<area shape="rect" coords="704,51,826,94" target="lay8"  nohref="nohref" />
+<area shape="rect" coords="703,95,827,112" target="place8"  nohref="nohref" />
+<area shape="rect" coords="703,111,827,234" target="eight"  nohref="nohref" />
+<area shape="rect" coords="703,234,828,251" target="place8"  nohref="nohref" />
+<area shape="rect" coords="829,51,951,95" target="lay9"  nohref="nohref" />
+<area shape="rect" coords="830,94,953,112" target="place9"  nohref="nohref" />
+<area shape="rect" coords="829,112,952,236" target="nine"  nohref="nohref" />
+<area shape="rect" coords="827,235,955,252" target="place9"  nohref="nohref" />
+<area shape="rect" coords="951,49,1076,95" target="lay10"  nohref="nohref" />
+<area shape="rect" coords="954,94,1077,112" target="place10"  nohref="nohref" />
+<area shape="rect" coords="954,112,1078,234" target="ten"  nohref="nohref" />
+<area shape="rect" coords="952,234,1078,251" target="place10"  nohref="nohref" />
+<area shape="rect" coords="1100,300,1551,347" target="seven"  nohref="nohref" />
+<area shape="rect" coords="1101,347,1324,436" target="hard6"  nohref="nohref" />
+<area shape="rect" coords="1325,349,1549,434" target="hard10"  nohref="nohref" />
+<area shape="rect" coords="1101,435,1326,522" target="hard8"  nohref="nohref" />
+<area shape="rect" coords="1324,434,1549,522" target="hard4"  nohref="nohref" />
+<area shape="rect" coords="1102,524,1250,608" target="three"  nohref="nohref" />
+<area shape="rect" coords="1251,523,1398,609" target="two"  nohref="nohref" />
+<area shape="rect" coords="1400,523,1550,609" target="twelve"  nohref="nohref" />
+<area shape="rect" coords="1102,611,1550,697" target="eleven"  nohref="nohref" />
+<area shape="rect" coords="1101,699,1551,749" target="craps"  nohref="nohref" />
+<area shape="rect" coords="999,393,1038,760" target="eleven"  nohref="nohref" />
+<area shape="rect" coords="1047,402,1088,747" target="craps"  nohref="nohref" />
+</map>
+</div>
 
 
 </body>

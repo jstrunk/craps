@@ -44,7 +44,7 @@ $(document).ready(function(){
 			STATUS.balance -= change;
 		};
 	});
-
+	
 	$("#roll").click(function(){
 		STATUS.die1 = dieroll();
 		STATUS.die2 = dieroll();
