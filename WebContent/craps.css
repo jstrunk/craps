@@ -5,16 +5,16 @@
 
 #dice {
 	position: relative;
-	top: 35px;
-	left: 600px;
+	top: 25px;
+	left: 570px;
 }
 
 #dice div {
 	float: left;
-	padding:5px;
+	margin:10px;
 	background-image: url(diefaces.svg);
-	height: 67px;
-	width: 67px;
+	height: 79px;
+	width: 79px;
 }
 
 #die1 {
