@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+#crapstable {
+	position: absolute;
+}
+
+#dice {
+	position: relative;
+	top: 20px;
+	left: 600px;
+}
+
+#dice div {
+	float: left;
+	padding:5px;
+	background-image: url(diefaces.svg);
+	height: 67px;
+	width: 67px;
+}
+
+#die1 {
+	background-position: -42px -42px;
+}
+
+#die2 {
+	background-position: -42px -42px;
+}

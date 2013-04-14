@@ -2,72 +2,75 @@
 <html>
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.rwdImageMaps.min.js"></script>
 <script type="text/javascript" src="object-watch.js"></script>
 <script type="text/javascript" src="crapslib.js"></script>
 <script type="text/javascript" src="craps.js"></script>
+<link rel="stylesheet" type="text/css" href="craps.css">
 <meta charset="UTF-8">
 <title>Craps</title>
 </head>
 <body>
-<div class="show" id="die1"></div>
-<div class="show" id="die2"></div>
+
 <div class="show" id="balance"></div>
 <div class="show" id="totalbet"></div>
 <div class="show" id="point"></div>
-<button id="roll">Roll!</button>
 <button id="reset">Reset Bets</button>
-<div><img src="Craps_table_layout.svg" width="1600" height="800" border="0" usemap="#map" />
-
+<div><img src="Craps_table_layout.svg" id="crapstable" class="map" usemap="#map" />
+<div id="dice">
+<div class="show" id="die1"></div>
+<div class="show" id="die2"></div>
+</div>
 <map name="map">
 <!-- #$-:Image map file created by GIMP Image Map plug-in -->
 <!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
 <!-- #$-:Please do not edit lines starting with "#$" -->
 <!-- #$VERSION:2.3 -->
 <!-- #$AUTHOR:Jeff Strunk -->
-<area shape="poly" coords="127,102,52,153,52,516,60,561,90,608,137,640,199,655,953,652,952,576,196,574,169,569,152,554,135,535,127,507" target="pass"  nohref="nohref" />
-<area shape="poly" coords="201,53,128,102,129,377,202,378" target="dontpass"  nohref="nohref" />
-<area shape="poly" coords="328,501,953,501,953,574,326,573" target="dontpass"  nohref="nohref" />
-<area shape="poly" coords="204,376,127,377,127,508,134,537,148,553,152,554,266,438" target="big6"  nohref="nohref" />
-<area shape="poly" coords="265,440,329,502,327,575,189,573,166,564,150,553" target="big8"  nohref="nohref" />
-<area shape="poly" coords="206,376,953,377,953,500,329,502" target="field"  nohref="nohref" />
-<area shape="rect" coords="203,252,951,376" target="come"  nohref="nohref" />
-<area shape="rect" coords="204,49,327,248" target="dontcome"  nohref="nohref" />
-<area shape="rect" coords="330,50,452,94" target="lay4"  nohref="nohref" />
-<area shape="rect" coords="328,95,452,113" target="place4"  nohref="nohref" />
-<area shape="rect" coords="329,233,452,253" target="place4"  nohref="nohref" />
-<area shape="rect" coords="329,112,452,233" target="four"  nohref="nohref" />
-<area shape="rect" coords="453,51,577,95" target="lay5"  nohref="nohref" />
-<area shape="rect" coords="453,95,578,111" target="place5"  nohref="nohref" />
-<area shape="rect" coords="453,112,578,235" target="five"  nohref="nohref" />
-<area shape="rect" coords="453,235,579,250" target="place5"  nohref="nohref" />
-<area shape="rect" coords="578,50,700,95" target="lay6"  nohref="nohref" />
-<area shape="rect" coords="578,95,703,112" target="place6"  nohref="nohref" />
-<area shape="rect" coords="578,113,703,234" target="six"  nohref="nohref" />
-<area shape="rect" coords="577,235,703,251" target="place6"  nohref="nohref" />
-<area shape="rect" coords="704,51,826,94" target="lay8"  nohref="nohref" />
-<area shape="rect" coords="703,95,827,112" target="place8"  nohref="nohref" />
-<area shape="rect" coords="703,111,827,234" target="eight"  nohref="nohref" />
-<area shape="rect" coords="703,234,828,251" target="place8"  nohref="nohref" />
-<area shape="rect" coords="829,51,951,95" target="lay9"  nohref="nohref" />
-<area shape="rect" coords="830,94,953,112" target="place9"  nohref="nohref" />
-<area shape="rect" coords="829,112,952,236" target="nine"  nohref="nohref" />
-<area shape="rect" coords="827,235,955,252" target="place9"  nohref="nohref" />
-<area shape="rect" coords="951,49,1076,95" target="lay10"  nohref="nohref" />
-<area shape="rect" coords="954,94,1077,112" target="place10"  nohref="nohref" />
-<area shape="rect" coords="954,112,1078,234" target="ten"  nohref="nohref" />
-<area shape="rect" coords="952,234,1078,251" target="place10"  nohref="nohref" />
-<area shape="rect" coords="1100,300,1551,347" target="seven"  nohref="nohref" />
-<area shape="rect" coords="1101,347,1324,436" target="hard6"  nohref="nohref" />
-<area shape="rect" coords="1325,349,1549,434" target="hard10"  nohref="nohref" />
-<area shape="rect" coords="1101,435,1326,522" target="hard8"  nohref="nohref" />
-<area shape="rect" coords="1324,434,1549,522" target="hard4"  nohref="nohref" />
-<area shape="rect" coords="1102,524,1250,608" target="three"  nohref="nohref" />
-<area shape="rect" coords="1251,523,1398,609" target="two"  nohref="nohref" />
-<area shape="rect" coords="1400,523,1550,609" target="twelve"  nohref="nohref" />
-<area shape="rect" coords="1102,611,1550,697" target="eleven"  nohref="nohref" />
-<area shape="rect" coords="1101,699,1551,749" target="craps"  nohref="nohref" />
-<area shape="rect" coords="999,393,1038,760" target="eleven"  nohref="nohref" />
-<area shape="rect" coords="1047,402,1088,747" target="craps"  nohref="nohref" />
+<area shape="poly" coords="64,51,26,77,26,258,30,281,45,304,69,320,100,326,476,326,476,288,98,288,85,285,76,277,68,268,64,254" id="pass" class="wager" name="pass" nohref="nohref">
+<area shape="poly" coords="101,27,64,51,65,189,101,189" id="dontpass" class="wager" name="dontpass" nohref="nohref">
+<area shape="poly" coords="164,251,477,251,477,287,163,287" id="dontpassp1" class="wager" name="dontpass" nohref="nohref">
+<area shape="poly" coords="102,188,64,189,64,254,67,269,74,277,76,277,133,219" id="big6" class="wager" name="big6" nohref="nohref">
+<area shape="poly" coords="133,220,165,251,164,288,95,287,83,282,75,277" id="big8" class="wager" name="big8" nohref="nohref">
+<area shape="poly" coords="103,188,477,189,477,250,165,251" id="field" class="wager" name="field" nohref="nohref">
+<area shape="rect" coords="102,126,476,188" id="come" class="wager" name="come" nohref="nohref">
+<area shape="rect" coords="102,25,164,124" id="dontcome" class="wager" name="dontcome" nohref="nohref">
+<area shape="rect" coords="165,25,226,47" id="lay4" class="wager" name="lay4" nohref="nohref">
+<area shape="rect" coords="164,48,226,57" id="place4p1" class="wager" name="place4" nohref="nohref">
+<area shape="rect" coords="165,117,226,127" id="place4" class="wager" name="place4" nohref="nohref">
+<area shape="rect" coords="165,56,226,117" id="four" class="wager" name="four" nohref="nohref">
+<area shape="rect" coords="227,26,289,48" id="lay5" class="wager" name="lay5" nohref="nohref">
+<area shape="rect" coords="227,48,289,56" id="place5p1" class="wager" name="place5" nohref="nohref">
+<area shape="rect" coords="227,56,289,118" id="five" class="wager" name="five" nohref="nohref">
+<area shape="rect" coords="227,118,290,125" id="place5" class="wager" name="place5" nohref="nohref">
+<area shape="rect" coords="289,25,350,48" id="lay6" class="wager" name="lay6" nohref="nohref">
+<area shape="rect" coords="289,48,352,56" id="place6p1" class="wager" name="place6" nohref="nohref">
+<area shape="rect" coords="289,57,352,117" id="six" class="wager" name="six" nohref="nohref">
+<area shape="rect" coords="289,118,352,126" id="place6" class="wager" name="place6" nohref="nohref">
+<area shape="rect" coords="352,26,413,47" id="lay8" class="wager" name="lay8" nohref="nohref">
+<area shape="rect" coords="352,48,414,56" id="place8p1" class="wager" name="place8" nohref="nohref">
+<area shape="rect" coords="352,56,414,117" id="eight" class="wager" name="eight" nohref="nohref">
+<area shape="rect" coords="352,117,414,126" id="place8" class="wager" name="place8" nohref="nohref">
+<area shape="rect" coords="415,26,476,48" id="lay9" class="wager" name="lay9" nohref="nohref">
+<area shape="rect" coords="415,47,477,56" id="place9p1" class="wager" name="place9" nohref="nohref">
+<area shape="rect" coords="415,56,476,118" id="nine" class="wager" name="nine" nohref="nohref">
+<area shape="rect" coords="414,118,478,126" id="place9" class="wager" name="place9" nohref="nohref">
+<area shape="rect" coords="476,25,538,48" id="lay10" class="wager" name="lay10" nohref="nohref">
+<area shape="rect" coords="477,47,539,56" id="place10p1" class="wager" name="place10" nohref="nohref">
+<area shape="rect" coords="477,56,539,117" id="ten" class="wager" name="ten" nohref="nohref">
+<area shape="rect" coords="476,117,539,126" id="place10" class="wager" name="place10" nohref="nohref">
+<area shape="rect" coords="550,150,776,174" id="seven" class="wager" name="seven" nohref="nohref">
+<area shape="rect" coords="551,174,662,218" id="hard6" class="wager" name="hard6" nohref="nohref">
+<area shape="rect" coords="663,175,775,217" id="hard10" class="wager" name="hard10" nohref="nohref">
+<area shape="rect" coords="551,218,663,261" id="hard8" class="wager" name="hard8" nohref="nohref">
+<area shape="rect" coords="662,217,775,261" id="hard4" class="wager" name="hard4" nohref="nohref">
+<area shape="rect" coords="551,262,625,304" id="three" class="wager" name="three" nohref="nohref">
+<area shape="rect" coords="626,262,699,305" id="two" class="wager" name="two" nohref="nohref">
+<area shape="rect" coords="700,262,775,305" id="twelve" class="wager" name="twelve" nohref="nohref">
+<area shape="rect" coords="551,306,775,349" id="eleven" class="wager" name="eleven" nohref="nohref">
+<area shape="rect" coords="551,350,776,375" id="craps" class="wager" name="craps" nohref="nohref">
+<area shape="rect" coords="500,197,519,380" id="elevenp1" class="wager" name="eleven" nohref="nohref">
+<area shape="rect" coords="524,201,544,374" id="crapsp1" class="wager" name="craps" nohref="nohref">
 </map>
 </div>
 

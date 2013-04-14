@@ -1,19 +1,28 @@
+var DIEFACES = {1:-42, 2:-120, 3:-199,4:-278,5:-357,6:-436};
+
+
 $(document).ready(function(){
 	var updateshow = function(field, oldval, newval){
 		$("#" + field).html(newval);
 		return newval;
 	};
 	
+	var updatedie = function(field, oldval, newval){
+		$("#" + field).css("background-position", DIEFACES[newval] + "px -42px");
+	};
+	
 	updateshow("balance", 0, STATUS.balance);
 	updateshow("totalbet", 0, STATUS.totalbet);
-	updateshow("die1", 0, STATUS.die1);
-	updateshow("die2", 0, STATUS.die2);
+	updatedie("die1", 0, STATUS.die1);
+	updatedie("die2", 0, STATUS.die2);
 	updateshow("point", 0, STATUS.point);
 	STATUS.watch("balance", updateshow);
 	STATUS.watch("totalbet", updateshow);
-	STATUS.watch("die1", updateshow);
-	STATUS.watch("die2", updateshow);
+	STATUS.watch("die1", updatedie);
+	STATUS.watch("die2", updatedie);
 	STATUS.watch("point", updateshow);
+	
+	$('img[usemap]').rwdImageMaps();
 
 	$(".bet input:text").change(function(){
 		var wager = $(this).val();
@@ -45,7 +54,11 @@ $(document).ready(function(){
 		};
 	});
 	
-	$("#roll").click(function(){
+	$(".wager").click(function(){
+		alert($(this).attr("name"));
+	});
+	
+	$("#dice").click(function(){
 		STATUS.die1 = dieroll();
 		STATUS.die2 = dieroll();
 		processbets();
