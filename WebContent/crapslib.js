@@ -152,7 +152,23 @@ var bets = {
 												craps: new Bet({name: "craps",
 													win: function(){ return simplewin(CRAP);},
 													lose: function(){ return simplelose(CRAP);},
-													odds: function(){ return 7;}})
+													odds: function(){ return 7;}}),
+hard4: new Bet({name: "hard4", 
+win: function(){ return ((STATUS.die1 === 2) && (STATUS.die2 === 2))? true : false;},
+lose: function(){ return (((STATUS.point != "off") && STATUS.dietotal() === 7) || ((STATUS.dietotal() === 4) && (STATUS.die1 != STATUS.die2)))? true : false;},
+odds: function(){ return 7;}}),
+hard6: new Bet({name: "hard6", 
+win: function(){ return ((STATUS.die1 === 3) && (STATUS.die2 === 3))? true : false;},
+lose: function(){ return (((STATUS.point != "off") && STATUS.dietotal() === 7) || ((STATUS.dietotal() === 6) && (STATUS.die1 != STATUS.die2)))? true : false;},
+odds: function(){ return 9;}}),
+hard8: new Bet({name: "hard8", 
+win: function(){ return ((STATUS.die1 === 4) && (STATUS.die2 === 4))? true : false;},
+lose: function(){ return (((STATUS.point != "off") && STATUS.dietotal() === 7) || ((STATUS.dietotal() === 8) && (STATUS.die1 != STATUS.die2)))? true : false;},
+odds: function(){ return 9;}}),
+hard10: new Bet({name: "hard10", 
+win: function(){ return ((STATUS.die1 === 5) && (STATUS.die2 === 5))? true : false;},
+lose: function(){ return (((STATUS.point != "off") && STATUS.dietotal() === 7) || ((STATUS.dietotal() === 10) && (STATUS.die1 != STATUS.die2)))? true : false;},
+odds: function(){ return 7;}})
 };
 
 function crapout() { return ((STATUS.point != "off") && (STATUS.dietotal() == 7))? true : false;}

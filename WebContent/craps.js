@@ -82,6 +82,7 @@ $(document).ready(function(){
 		$("#wagerentry").css({top: e.pageY + "px", left: e.pageX + "px"});
 		$("#wagerentry").show();
 		$("input[name=wager]").focus();
+		$("input[name=wager]").select();
 	}
 	
 	function showbet(betname) {
@@ -165,26 +166,61 @@ $(document).ready(function(){
 		$("input[name=wager]").val(bets[betname].max());
 	});
 	
+	function wagervalidate(input){
+		var betname = $("#betname").html();
+		var val = Math.floor(input.val().replace(/\D/g, ''));
+		val = (val > bets[betname].max())? bets[betname].max(): val;
+		val = ((val != 0) && (val < bets[betname].min()))? bets[betname].min(): val;
+		var changed = (Number(input.val()) === Number(val));
+		console.log(changed + " " + input.val() + " " + val);
+		input.val(val);
+		return changed;
+	}
+	
 	$("#wagerbet").click(function(){
+		if (wagervalidate($("input[name=wager]"))) {
+			$("input[name=wager]").css('background-color', "white");
 		placebet($("#betname").html(),$("input[name=wager]").val());
 		$("#wagerentry").hide();
+		updatestate();
+		} else {
+			$("input[name=wager]").css('background-color', "yellow");
+		}
+	});
+	
+	$("input[name=wager]").keypress(function(e){
+		if (event.which === 13){
+			if (wagervalidate($(this))) {
+				$(this).css('background-color', "white");
+			placebet($("#betname").html(),$("input[name=wager]").val());
+			$("#wagerentry").hide();
+			updatestate();
+			} else{
+				$(this).css('background-color', "yellow");
+			}
+			
+		}
 	});
 		
 	$("#dice").click(function(){
-		STATUS.die1 = dieroll();
-		STATUS.die2 = dieroll();
-		processbets();
-		if (STATUS.point === "off"){
-			if (POINTS.indexOf(STATUS.dietotal()) >= 0){
-				STATUS.point = STATUS.dietotal();
-			}
-		} else if ((STATUS.point === STATUS.dietotal()) || (STATUS.dietotal() === 7)) {
+		if (bets.pass.active || bets.dontpass.active){
+			STATUS.die1 = dieroll();
+			STATUS.die2 = dieroll();
+			processbets();
+			if (STATUS.point === "off"){
+				if (POINTS.indexOf(STATUS.dietotal()) >= 0){
+					STATUS.point = STATUS.dietotal();
+				}
+			} else if ((STATUS.point === STATUS.dietotal()) || (STATUS.dietotal() === 7)) {
 				STATUS.point = "off";
+			}
+			for (var i in bets){
+				showbet(bets[i].name);
+			}
+			updatestate();
+		} else {
+			alert("You must bet on at least the Pass Line or Don't Pass Line.");
 		}
-		for (var i in bets){
-			showbet(bets[i].name);
-		}
-		updatestate();
 	});
 
 });
