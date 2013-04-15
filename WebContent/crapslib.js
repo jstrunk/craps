@@ -212,8 +212,8 @@ for (var i in POINTS) {
 		win: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == 7))? true : false;},
 		lose: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == this.point))? true : false;},
 		odds: function(){ return 1/ODDS[this.point];},
-		min: function(){ return bets["come" + this.point].wager;},
-		max: function(){ return bets["come" + this.point].wager * 6;}});
+		min: function(){ return bets["dontcome" + this.point].wager;},
+		max: function(){ return bets["dontcome" + this.point].wager * 6;}});
 	bets["dontcome" + POINTS[i] + "odds"].point = POINTS[i];
 }
 
