@@ -95,12 +95,9 @@ $(document).ready(function(){
 				chips = $('.chips[name="' + betname + '"]');
 				if (/odds$/.test(betname)){
 					var coords = $('.chips[name="' + betname.slice(0,betname.length - 4) + '"]').position();
-					console.log('.chips[name="' + betname.slice(0,betname.length - 4) + '"]');
-					console.log(coords);
 					chips.css({top: (coords.top - 10) + "px", left: (coords.left + 10) + "px"});
 				} else if (/come[0-9]/.test(betname)) {
 					var coords = $("#tablediv").position();
-					console.log(coords);
 					chips.css({top: (coords.top + CHIPS[betname].top) + "px", left: (coords.left + CHIPS[betname].left) + "px"});
 				} 
 				else {
@@ -123,16 +120,16 @@ $(document).ready(function(){
 		}
 		var change = wager - bets[betname].wager;
 		if (!bets[betname].mutable()){
-			console.log("This bet may not be changed at this time.");
+			alert("This bet may not be changed at this time.");
 			$("input[name=wager]").val(bets[betname].wager);
 		} else if (wager > bets[betname].max()) {
-			console.log("This bet will exceed the maximum for this wager of $" + bets[betname].max());
+			alert("This bet will exceed the maximum for this wager of $" + bets[betname].max());
 			$("input[name=wager]").val(bets[betname].wager);
 		} else if ((wager < bets[betname].min()) && (wager != 0)) {
-			console.log("This bet will not meet the minimum for this wager of $" + bets[betname].min());
+			alert("This bet will not meet the minimum for this wager of $" + bets[betname].min());
 			$("input[name=wager]").val(bets[betname].wager);
 		} else if ((STATUS.balance - change) < 0){
-			console.log("insufficient funds");
+			alert("insufficient funds");
 			$("input[name=wager]").val(bets[betname].wager);
 		} else {
 			if (betname.match("buy")){
@@ -140,9 +137,7 @@ $(document).ready(function(){
 				STATUS.balance -= Math.ceil(wager * .05);
 			}
 			bets[betname].wager = wager;
-			console.log(wager);
 			bets[betname].active = (wager > 0)? true: false;
-			console.log(bets[betname].active);
 			STATUS.totalbet += change;
 			STATUS.balance -= change;
 			showbet(betname);
@@ -172,7 +167,6 @@ $(document).ready(function(){
 		val = (val > bets[betname].max())? bets[betname].max(): val;
 		val = ((val != 0) && (val < bets[betname].min()))? bets[betname].min(): val;
 		var changed = (Number(input.val()) === Number(val));
-		console.log(changed + " " + input.val() + " " + val);
 		input.val(val);
 		return changed;
 	}
