@@ -116,7 +116,7 @@ var bets = {
 				max: function(){return bets.pass.wager * ODDSLIMIT[STATUS.point];},
 				min: function(){return bets.pass.wager;}}),
 				dontpass: new Bet({name: "dontpass",
-					win: function(){ return (((STATUS.point === "off") && ([2,3].indexOf(STATUS.dietotal()) >= 0)) || (STATUS.dietotal() === 7))? true : false;},
+					win: function(){ return (((STATUS.point === "off") && ([2,3].indexOf(STATUS.dietotal()) >= 0)) || ((STATUS.point != "off") && (STATUS.dietotal() === 7)))? true : false;},
 					lose: function(){ return (((STATUS.point === "off") && (NATURAL.indexOf(STATUS.dietotal()))) || (STATUS.dietotal() === STATUS.point))? true : false;},
 					keep: true}),
 					dontpassodds: new Bet({name: "dontpassodds",

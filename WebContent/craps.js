@@ -23,100 +23,30 @@ left: "495px",
 top: "42px"}};
 
 var CHIPS = {
-pass: {left: "356px",
-top: "307px"},
-dontpass: {left: "382px",
-top: "268px"},
-field: {left: "244px",
-top: "231px"},
-big6: {left: "92px",
-top: "218px"},
-big8: {left: "132px",
-top: "258px"},
-come: {left: "380px",
-top: "155px"},
-dontcome: {left: "127px",
-top: "63px"},
-lay4: {left: "180px",
-top: "35px"},
-lay5: {left: "242px",
-top: "35px"},
-lay6: {left: "304px",
-top: "35px"},
-lay8: {left: "366px",
-top: "35px"},
-lay9: {left: "428px",
-top: "35px"},
-lay10: {left: "490px",
-top: "35px"},
-buy4: {left: "170px",
-top: "50px"},
-buy5: {left: "232px",
-top: "50px"},
-buy6: {left: "294px",
-top: "50px"},
-buy8: {left: "356px",
-top: "50px"},
-buy9: {left: "418px",
-top: "50px"},
-buy10: {left: "480px",
-top: "50px"},
-place4: {left: "195px",
-top: "118px"},
-place5: {left: "257px",
-top: "118px"},
-place6: {left: "319px",
-top: "118px"},
-place8: {left: "381px",
-top: "118px"},
-place9: {left: "443px",
-top: "118px"},
-place10: {left: "505px",
-top: "118px"},
-come4: {left: "174px",
-top: "98px"},
-come5: {left: "236px",
-top: "98px"},
-come6: {left: "298px",
-top: "98px"},
-come8: {left: "360px",
-top: "98px"},
-come9: {left: "422px",
-top: "98px"},
-come10: {left: "484px",
-top: "98px"},
-dontcome4: {left: "200px",
-top: "70px"},
-dontcome5: {left: "262px",
-top: "70px"},
-dontcome6: {left: "324px",
-top: "70px"},
-dontcome8: {left: "386px",
-top: "70px"},
-dontcome9: {left: "450px",
-top: "70px"},
-dontcome10: {left: "510px",
-top: "70px"},
-seven: {left: "625px",
-top: "129px"},
-hard6: {left: "621px",
-top: "188px"},
-hard10: {left: "690px",
-top: "189px"},
-hard8: {left: "629px",
-top: "233px"},
-hard4: {left: "696px",
-top: "231px"},
-three: {left: "580px",
-top: "275px"}, 
-two: {left: "668px",
-top: "277px"},
-twelve: {left: "733px",
-top: "277px"},
-eleven: {left: "626px",
-top: "322px"},
-craps: {left: "663px",
-top: "359px"},		
+come4: {left: 174,
+top: 88},
+come5: {left: 236,
+top: 88},
+come6: {left: 298,
+top: 88},
+come8: {left: 360,
+top: 88},
+come9: {left: 422,
+top: 88},
+come10: {left: 484,
+top: 88},
+dontcome4: {left: 190,
+top: 70},
+dontcome5: {left: 252,
+top: 70},
+dontcome6: {left: 314,
+top: 70},
+dontcome8: {left: 376,
+top: 70},
+dontcome9: {left: 440,
+top: 70},
+dontcome10: {left: 500,
+top: 70}	
 };
 
 $(document).ready(function(){
@@ -143,6 +73,49 @@ $(document).ready(function(){
 	
 	updatestate();
 	
+	function enterwager(betname, e){
+		if (!bets[betname].mutable()){
+			betname += "odds";
+		}
+		$("#betname").html(betname);
+		$("input[name=wager]").val(bets[betname].wager);
+		$("#wagerentry").css({top: e.pageY + "px", left: e.pageX + "px"});
+		$("#wagerentry").show();
+		$("input[name=wager]").focus();
+	}
+	
+	function showbet(betname) {
+		var chips = $('.chips[name="' + betname + '"]');
+		if (bets[betname].active){
+			if (chips.length){ //chips div for this bet already exists
+				chips.html(bets[betname].wager);
+			} else {
+				$("#tablediv").append('<div class="chips" name="' + betname + '">' + bets[betname].wager + '</div>');
+				chips = $('.chips[name="' + betname + '"]');
+				if (/odds$/.test(betname)){
+					var coords = $('.chips[name="' + betname.slice(0,betname.length - 4) + '"]').position();
+					console.log('.chips[name="' + betname.slice(0,betname.length - 4) + '"]');
+					console.log(coords);
+					chips.css({top: (coords.top - 5) + "px", left: (coords.left + 5) + "px"});
+				} else if (/come[0-9]/.test(betname)) {
+					var coords = $("#tablediv").position();
+					console.log(coords);
+					chips.css({top: (coords.top + CHIPS[betname].top) + "px", left: (coords.left + CHIPS[betname].left) + "px"});
+				} 
+				else {
+					chips.css($("#wagerentry").css(["top", "left"]));
+				}
+				chips.click(function(){
+					var coords = chips.position();
+					enterwager(betname, {pageX: coords.left, pageY: coords.top});
+				});
+			}
+			
+		} else {
+			chips.detach();
+		}
+	}
+	
 	function placebet(betname,wager){
 		if (!wager){
 			wager = 0;
@@ -166,19 +139,21 @@ $(document).ready(function(){
 				STATUS.balance -= Math.ceil(wager * .05);
 			}
 			bets[betname].wager = wager;
-			bets[betname].active = true;
+			console.log(wager);
+			bets[betname].active = (wager > 0)? true: false;
+			console.log(bets[betname].active);
 			STATUS.totalbet += change;
 			STATUS.balance -= change;
+			showbet(betname);
 		};
 	}
-	
-	$(".wager").click(function(){
+
+	$(".wager").click(function(e){
 		var betname = $(this).attr("name");
-		$("#betname").html(betname);
-		$("input[name=wager]").val(bets[betname].wager);
-		$("#wagerentry").show();
-		$("input[name=wager]").focus();
+		enterwager(betname, e);
 	});
+	
+
 	
 	$("#wagermin").click(function(){
 		var betname = $("#betname").html();
@@ -205,6 +180,9 @@ $(document).ready(function(){
 			}
 		} else if ((STATUS.point === STATUS.dietotal()) || (STATUS.dietotal() === 7)) {
 				STATUS.point = "off";
+		}
+		for (var i in bets){
+			showbet(bets[i].name);
 		}
 		updatestate();
 	});

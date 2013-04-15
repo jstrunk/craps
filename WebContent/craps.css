@@ -38,13 +38,22 @@
 #wagerentry {
 	display: none;
 	overflow: hidden;
-	position: relative;
+	position: absolute;
 	top: 120px;
 	left: 100px;
 	width: 200px;
 	border: ridge gray;
 	background-color: DarkGray;
-	opacity: 0.7;
-	filter:alpha(opacity=70); /* For IE8 and earlier */
 }
 
+.chips {
+	position: absolute;
+	overflow: hidden;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	background-color: green;
+	border: 1px dotted black;
+	font-size: 15px;
+	text-align: center;
+}
