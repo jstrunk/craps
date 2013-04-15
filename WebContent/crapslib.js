@@ -187,15 +187,15 @@ for (var i in POINTS) {
 		win: pointwin,
 		lose: crapout,
 		odds: function(){ return ODDS[this.point];},
-		min: function(){ return bets["come" + POINTS[i]].wager;},
-		max: function(){ return bets["come" + POINTS[i]].wager * ODDSLIMIT[POINTS[i]];}});
+		min: function(){ return bets["come" + this.point].wager;},
+		max: function(){ return bets["come" + this.point].wager * ODDSLIMIT[this.point];}});
 	bets["come" + POINTS[i] + "odds"].point = POINTS[i];
 	bets["dontcome" + POINTS[i] + "odds"] = new Bet({name: "dontcome" + POINTS[i] + "odds",
 		win: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == 7))? true : false;},
 		lose: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == this.point))? true : false;},
 		odds: function(){ return 1/ODDS[this.point];},
-		min: function(){ return bets["come" + POINTS[i]].wager;},
-		max: function(){ return bets["come" + POINTS[i]].wager * 6;}});
+		min: function(){ return bets["come" + this.point].wager;},
+		max: function(){ return bets["come" + this.point].wager * 6;}});
 	bets["dontcome" + POINTS[i] + "odds"].point = POINTS[i];
 }
 
