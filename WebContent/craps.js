@@ -118,6 +118,7 @@ $(document).ready(function(){
 		if (!wager){
 			wager = 0;
 		}
+		wager = Number(wager);
 		var change = wager - bets[betname].wager;
 		if (!bets[betname].mutable()){
 			alert("This bet may not be changed at this time.");

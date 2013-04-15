@@ -118,11 +118,12 @@ var bets = {
 				dontpass: new Bet({name: "dontpass",
 					win: function(){ return (((STATUS.point === "off") && ([2,3].indexOf(STATUS.dietotal()) >= 0)) || ((STATUS.point != "off") && (STATUS.dietotal() === 7)))? true : false;},
 					lose: function(){ return (((STATUS.point === "off") && (NATURAL.indexOf(STATUS.dietotal()) >= 0)) || (STATUS.dietotal() === STATUS.point))? true : false;},
-					keep: true}),
+					keep: true,
+					mutable: function(){ return (STATUS.point != "off")? false : true;}}),
 					dontpassodds: new Bet({name: "dontpassodds",
 						win: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() === 7))? true : false;},
 						lose: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() === STATUS.point))? true : false;},
-						odds: function(){return 1/ODDS[STATUS.dietotal()];},
+						odds: function(){return 1/ODDS[STATUS.point];},
 						max: function(){return bets.dontpass.wager * 6;},
 						min: function(){return bets.dontpass.wager;}}),
 						field: new Bet({name: "field",
@@ -197,7 +198,8 @@ for (var i in POINTS) {
 	bets["come" + POINTS[i]].point = POINTS[i];
 	bets["dontcome" + POINTS[i]] = new Bet({name: "dontcome" + POINTS[i],
 		win: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == 7))? true : false;},
-		lose: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == this.point))? true : false;}});
+		lose: function(){ return ((STATUS.point != "off") && (STATUS.dietotal() == this.point))? true : false;},
+		mutable: function(){return false;}});
 	bets["dontcome" + POINTS[i]].point = POINTS[i];
 	bets["come" + POINTS[i] + "odds"] = new Bet({name: "come" + POINTS[i] + "odds",
 		win: pointwin,
