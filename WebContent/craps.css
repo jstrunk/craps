@@ -3,6 +3,16 @@
 	position: absolute;
 }
 
+#point {
+	position: relative;
+	top: 20px;
+	left: 20px;
+	background-image: url(pointmarker.png);
+	background-position: 0px -20px;
+	height: 20px;
+	width: 20px;
+}
+
 #dice {
 	position: relative;
 	top: 25px;

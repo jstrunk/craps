@@ -37,9 +37,10 @@ function dieroll(){
 var STATUS = {
 		balance: 100,
 		totalbet: 0,
-		die1: dieroll(),
-		die2: dieroll(),
-		dietotal: function(){return STATUS.die1 + STATUS.die2;},
+		die1: 3,
+		die2: 4,
+		dietotal: function(){
+			return Number(STATUS.die1) + Number(STATUS.die2);},
 		point: "off"
 };
 
