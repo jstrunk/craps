@@ -96,7 +96,7 @@ $(document).ready(function(){
 					var coords = $('.chips[name="' + betname.slice(0,betname.length - 4) + '"]').position();
 					console.log('.chips[name="' + betname.slice(0,betname.length - 4) + '"]');
 					console.log(coords);
-					chips.css({top: (coords.top - 5) + "px", left: (coords.left + 5) + "px"});
+					chips.css({top: (coords.top - 10) + "px", left: (coords.left + 10) + "px"});
 				} else if (/come[0-9]/.test(betname)) {
 					var coords = $("#tablediv").position();
 					console.log(coords);
