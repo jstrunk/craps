@@ -2,7 +2,6 @@
 <html>
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.rwdImageMaps.min.js"></script>
 <script type="text/javascript" src="object-watch.js"></script>
 <script type="text/javascript" src="crapslib.js"></script>
 <script type="text/javascript" src="craps.js"></script>
@@ -12,14 +11,19 @@
 </head>
 <body>
 
-<div class="show" id="balance"></div>
-<div class="show" id="totalbet"></div>
+<div id="balance"></div>
+<div id="totalbet"></div>
 <button id="reset">Reset Bets</button>
 <div><img src="Craps_table_layout.svg" id="crapstable" class="map" usemap="#map" />
-<div class="show" id="point"></div>
+<div id="point"></div>
 <div id="dice">
-<div class="show" id="die1"></div>
-<div class="show" id="die2"></div>
+<div id="die1"></div>
+<div id="die2"></div>
+</div>
+<div id="wagerentry"><div id="betname"></div>
+Bet<input name="wager"></input>
+<button id="wagermin">Bet Min</button><button id="wagermax">Bet Max</button>
+<button id="wagerbet">Bet!</button>
 </div>
 <map name="map">
 <!-- #$-:Image map file created by GIMP Image Map plug-in -->

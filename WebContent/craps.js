@@ -141,56 +141,63 @@ $(document).ready(function(){
 		updatepoint("point", STATUS.point);
 	}
 	
-	/*
-	STATUS.watch("balance", updateshow);
-	STATUS.watch("totalbet", updateshow);
-	STATUS.watch("die1", updatedie);
-	STATUS.watch("die2", updatedie);
-	STATUS.watch("point", updatepoint);
-	*/
-	
 	updatestate();
 	
-	$('img[usemap]').rwdImageMaps();
-
-	$(".bet input:text").change(function(){
-		var wager = $(this).val();
+	function placebet(betname,wager){
 		if (!wager){
 			wager = 0;
 		}
-		var change = wager - bets[$(this).attr("name")].wager;
-		if (!bets[$(this).attr("name")].mutable()){
+		var change = wager - bets[betname].wager;
+		if (!bets[betname].mutable()){
 			console.log("This bet may not be changed at this time.");
-			$(this).val(bets[$(this).attr("name")].wager);
-		} else if (wager > bets[$(this).attr("name")].max()) {
-			console.log("This bet will exceed the maximum for this wager of $" + bets[$(this).attr("name")].max());
-			$(this).val(bets[$(this).attr("name")].wager);
-		} else if ((wager < bets[$(this).attr("name")].min()) && (wager != 0)) {
-			console.log("This bet will not meet the minimum for this wager of $" + bets[$(this).attr("name")].min());
-			$(this).val(bets[$(this).attr("name")].wager);
+			$("input[name=wager]").val(bets[betname].wager);
+		} else if (wager > bets[betname].max()) {
+			console.log("This bet will exceed the maximum for this wager of $" + bets[betname].max());
+			$("input[name=wager]").val(bets[betname].wager);
+		} else if ((wager < bets[betname].min()) && (wager != 0)) {
+			console.log("This bet will not meet the minimum for this wager of $" + bets[betname].min());
+			$("input[name=wager]").val(bets[betname].wager);
 		} else if ((STATUS.balance - change) < 0){
 			console.log("insufficient funds");
-			$(this).val(bets[$(this).attr("name")].wager);
+			$("input[name=wager]").val(bets[betname].wager);
 		} else {
-			if ($(this).attr("name").match("buy")){
+			if (betname.match("buy")){
 				// charge 5% commission
 				STATUS.balance -= Math.ceil(wager * .05);
 			}
-			bets[$(this).attr("name")].wager = wager;
-			bets[$(this).attr("name")].active = true;
+			bets[betname].wager = wager;
+			bets[betname].active = true;
 			STATUS.totalbet += change;
 			STATUS.balance -= change;
 		};
-	});
+	}
 	
 	$(".wager").click(function(){
-		alert($(this).attr("name"));
+		var betname = $(this).attr("name");
+		$("#betname").html(betname);
+		$("input[name=wager]").val(bets[betname].wager);
+		$("#wagerentry").show();
+		$("input[name=wager]").focus();
 	});
 	
+	$("#wagermin").click(function(){
+		var betname = $("#betname").html();
+		$("input[name=wager]").val(bets[betname].min());
+	});
+	
+	$("#wagermax").click(function(){
+		var betname = $("#betname").html();
+		$("input[name=wager]").val(bets[betname].max());
+	});
+	
+	$("#wagerbet").click(function(){
+		placebet($("#betname").html(),$("input[name=wager]").val());
+		$("#wagerentry").hide();
+	});
+		
 	$("#dice").click(function(){
 		STATUS.die1 = dieroll();
 		STATUS.die2 = dieroll();
-		console.log(STATUS.dietotal());
 		processbets();
 		if (STATUS.point === "off"){
 			if (POINTS.indexOf(STATUS.dietotal()) >= 0){
@@ -199,7 +206,6 @@ $(document).ready(function(){
 		} else if ((STATUS.point === STATUS.dietotal()) || (STATUS.dietotal() === 7)) {
 				STATUS.point = "off";
 		}
-		console.log(STATUS.point);
 		updatestate();
 	});
 
